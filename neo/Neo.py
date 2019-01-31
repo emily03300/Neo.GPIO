@@ -175,7 +175,7 @@ class Temp:
             with open("/sys/class/i2c-dev/i2c-1/device/1-0048/temp1_input", "r") as reader:  # Read i2c millicel file
                 self.temp = (float(reader.read().replace(' ', '').replace('\n', ''))) * (0.001)  # Turn into celcius
         except:
-            print "Snap in sensor is not plugged in!"
+            print ("Snap in sensor is not plugged in!")
         finally:
             return (self.temp * 1.8 + 32) if "f" in mode else self.temp  # Either return into Far or Celc
 
@@ -204,7 +204,7 @@ class Barometer:
                 self.Tempscale = (float(tsreader.read().replace('\n', '')))
             self.temp = ((self.temp) * (self.Tempscale))
         except:
-            print "Barometer is not plugged in!"
+            print ("Barometer is not plugged in!")
         finally:
             return (self.temp * 1.8 + 32) if "f" in mode else (self.temp)
 
@@ -230,7 +230,7 @@ class Accel:
             with open("/sys/class/misc/FreescaleAccelerometer/enable", "w") as enabler:
                 enabler.write("1")
         except:
-            print "Error: No Accel detected"
+            print ("Error: No Accel detected")
 
     def calibrate(self):
         self.valSub = self.get()
@@ -268,7 +268,7 @@ class Magno:
             with open("/sys/class/misc/FreescaleMagnetometer/enable", "w") as enabler:
                 enabler.write("1")
         except:
-            print "Error: No Magnometer detected"
+            print ("Error: No Magnometer detected")
 
     def calibrate(self):
         self.valSub = self.get()
