@@ -28,12 +28,10 @@ for a in range(0, 5):  # Do for five times
     sleep(1)  # wait one second
     neo.digitalWrite(pinTwo, neo.LOW)  # write low value to pin
     sleep(1)  # wait one second
-for a in range(0, 5):  # Do for five times
     neo.digitalWrite(pinFour, neo.HIGH)  # write high value to pin
     sleep(1)  # wait one second
     neo.digitalWrite(pinFour, neo.LOW)  # write low value to pin
     sleep(1)  # wait one second
-
 
 # Read pin
 print
