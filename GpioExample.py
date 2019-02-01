@@ -12,17 +12,11 @@ pinTwo = 25  # pin to use
 pinThree = 3
 pinFour = 26  # pin to use
 pinFive = 3
-pinSix = 33  # pin to use
-pinSeven = 3
-
 
 neo.pinMode(pinTwo, neo.OUTPUT)  # Use innerbank pin 2 and set it as output either 0 (neo.INPUT) or 1 (neo.OUTPUT)
 neo.pinMode(pinThree, neo.INPUT)  # Use pin three(innerbank) and read set state to read
 neo.pinMode(pinFour, neo.OUTPUT)  # Use innerbank pin 2 and set it as output either 0 (neo.INPUT) or 1 (neo.OUTPUT)
 neo.pinMode(pinFive, neo.INPUT)
-neo.pinMode(pinSix, neo.OUTPUT)  # Use innerbank pin 2 and set it as output either 0 (neo.INPUT) or 1 (neo.OUTPUT)
-neo.pinMode(pinSeven, neo.INPUT)
-
 
 # Blink example
 for a in range(0, 10):  # Do for five times
@@ -34,10 +28,7 @@ for a in range(0, 10):  # Do for five times
     sleep(0.5)  # wait one second
     neo.digitalWrite(pinFour, neo.LOW)  # write low value to pin
     sleep(0.5)  # wait one second
-    neo.digitalWrite(pinSix, neo.HIGH)  # write high value to pin
-    sleep(0.5)  # wait one second
-    neo.digitalWrite(pinSeven, neo.LOW)  # write low value to pin
-    sleep(0.5)  # wait one second
+
 
 # Read pin
 print
