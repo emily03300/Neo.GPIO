@@ -117,13 +117,14 @@ neo =Gpio()
 pinTwo = 2  # pin to use
 pinFour = 3
 pinFive = 4
-pinSix = 5
+pinSix = 25
 
 pinNum = [pinTwo, pinFour, pinFive, pinSix]
 
 # Blink example
 # for i in pinNum:
 #     neo.pinMode(pinNum[i], neo.OUTPUT)
+
 num = [0,0,0,0]
 
 #while 1:
