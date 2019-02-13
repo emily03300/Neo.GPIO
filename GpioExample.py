@@ -162,10 +162,7 @@ num = [0,0,0,0]
 for i in range(4):
     neo.pinMode(pinNum[i], neo.OUTPUT)
 
-
-
-
-neo.digitalWrite(pinNum[0], 0)
+neo.digitalWrite(pinNum[0], 1)
 sleep(0.5)
 neo.digitalWrite(pinNum[1], 1)
 sleep(0.5)
