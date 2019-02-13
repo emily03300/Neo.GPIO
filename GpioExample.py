@@ -90,12 +90,12 @@ pinNum = [S0, S1, S2, S3]
 for i in pinNum:
     neo.pinMode(pinNum[i], neo.OUTPUT)
 while 1 :
-    for x in range(0, 15):
+    for x in range(16):
         num = [0,0,0,0]
         t = x
         print("x is" + str(x))
         print(str(t))
-        for y in range(0, 3):
+        for y in range(4):
             num[y] = t%2
             t = t/2
 
