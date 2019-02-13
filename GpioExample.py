@@ -42,7 +42,7 @@ from time import sleep
 
 neo = Gpio()
 
-pinNum = [0, 1, 2, 3]
+pinNum = [24, 25, 26, 27]
 
 for i in range(4):
     neo.pinMode(pinNum[i], neo.OUTPUT)
@@ -55,8 +55,8 @@ while 1 :
 				num[y] = t%2
 				t = t/2
 
-			neo.digitalWrite(pinNum[24], num[24])
-			neo.digitalWrite(pinNum[25], num[25])
-			neo.digitalWrite(pinNum[26], num[26])
-			neo.digitalWrite(pinNum[27], num[27])
+			neo.digitalWrite(pinNum[0], num[0])
+			neo.digitalWrite(pinNum[1], num[1])
+			neo.digitalWrite(pinNum[2], num[2])
+			neo.digitalWrite(pinNum[3], num[3])
 			sleep(1)
