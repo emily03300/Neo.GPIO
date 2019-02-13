@@ -25,6 +25,4 @@ for a in range(0, 5):  # Do for five times
     sleep(1)  # wait one second
 
 # Read pin
-print
-"Current pin(" + str(pinThree) + ") state is: " + str(neo.digitalRead(
-    pinThree))  # read current value of pinThree(To succesfully read a pin it must be either pulled to ground or 3.3v, a non connected wire will not work)
+print ("Current pin(" + str(pinThree) + ") state is: " + str(neo.digitalRead(pinThree)))  # read current value of pinThree(To succesfully read a pin it must be either pulled to ground or 3.3v, a non connected wire will not work)
