@@ -165,8 +165,8 @@ for i in range(4):
 
 
 while 1:
-    neo.digitalWrite(pinNum[0], c1[0])
-    neo.digitalWrite(pinNum[1], c1[1])
-    neo.digitalWrite(pinNum[2], c1[2])
-    neo.digitalWrite(pinNum[3], c1[3])
+    neo.digitalWrite(pinNum[0], HIGH)
+    neo.digitalWrite(pinNum[1], HIGH)
+    neo.digitalWrite(pinNum[2], HIGH)
+    neo.digitalWrite(pinNum[3], HIGH)
     sleep(0.5)
