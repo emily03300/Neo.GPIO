@@ -124,17 +124,17 @@ pinNum = [pinTwo, pinFour, pinFive, pinSix]
 # Blink example
 # for i in pinNum:
 #     neo.pinMode(pinNum[i], neo.OUTPUT)
+num = [0,0,0,0]
 
-while 1:
-    for x in range(0,16):
-        num = [0,0,0,0]
-        t = x
-        for y in range(4,0):
-            num[y] = t % 2
-            t = t // 2
+#while 1:
+for x in range(0,16):
+    t = x
+    for y in range(4,0):
+        num[y] = t % 2
+        t = t // 2
 
-        neo.digitalWrite(pinNum[3], num[3])
-        neo.digitalWrite(pinNum[2], num[2])
-        neo.digitalWrite(pinNum[1], num[1])
-        neo.digitalWrite(pinNum[0], num[0])
-        sleep(1)
+    neo.digitalWrite(pinNum[3], num[3])
+    neo.digitalWrite(pinNum[2], num[2])
+    neo.digitalWrite(pinNum[1], num[1])
+    neo.digitalWrite(pinNum[0], num[0])
+    sleep(1)
