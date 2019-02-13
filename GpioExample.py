@@ -15,13 +15,7 @@ pinFive = 11
 pinSix = 2
 
 neo.pinMode(pinTwo, neo.OUTPUT)  # Use innerbank pin 2 and set it as output either 0 (neo.INPUT) or 1 (neo.OUTPUT)
-neo.pinMode(pinSix, neo.INPUT)  # Use pin three(innerbank) and read set state to read
-neo.pinMode(pinThree, neo.OUTPUT)  # Use innerbank pin 2 and set it as output either 0 (neo.INPUT) or 1 (neo.OUTPUT)
-neo.pinMode(pinSix, neo.INPUT)
-neo.pinMode(pinFour, neo.OUTPUT)  # Use innerbank pin 2 and set it as output either 0 (neo.INPUT) or 1 (neo.OUTPUT)
-neo.pinMode(pinSix, neo.INPUT)
-neo.pinMode(pinFive, neo.OUTPUT)  # Use innerbank pin 2 and set it as output either 0 (neo.INPUT) or 1 (neo.OUTPUT)
-neo.pinMode(pinSix, neo.INPUT)
+neo.pinMode(pinThree, neo.INPUT)  # Use pin three(innerbank) and read set state to read
 
 # Blink example
 for a in range(0, 5):  # Do for five times
@@ -34,31 +28,6 @@ for a in range(0, 5):  # Do for five times
     neo.digitalWrite(pinFive, neo.LOW)  # write low value to pin
     sleep(1)  # wait one second
 
-    neo.digitalWrite(pinTwo, neo.HIGH)  # write high value to pin
-    sleep(1)  # wait one second
-    neo.digitalWrite(pinTwo, neo.LOW)  # write low value to pin
-    sleep(1)  # wait one second
-    neo.digitalWrite(pinFive, neo.HIGH)  # write high value to pin
-    sleep(1)  # wait one second
-    neo.digitalWrite(pinFive, neo.LOW)  # write low value to pin
-    sleep(1)  # wait one second
-
-    neo.digitalWrite(pinTwo, pinFive, neo.HIGH)  # write high value to pin
-    sleep(1)  # wait one second
-    neo.digitalWrite(pinTwo, pinFive, neo.LOW)  # write low value to pin
-    sleep(1)  # wait one second
-    neo.digitalWrite(pinThree, pinFive, neo.HIGH)  # write high value to pin
-    sleep(1)  # wait one second
-    neo.digitalWrite(pinThree, pinFive, neo.LOW)  # write low value to pin
-    sleep(1)  # wait one second
-    neo.digitalWrite(pinFour, pinFive, neo.HIGH)  # write high value to pin
-    sleep(1)  # wait one second
-    neo.digitalWrite(pinFour, pinFive, neo.LOW)  # write low value to pin
-    sleep(1)  # wait one second
-    neo.digitalWrite(pinFive, neo.HIGH)  # write high value to pin
-    sleep(1)  # wait one second
-    neo.digitalWrite(pinFive, neo.LOW)  # write low value to pin
-    sleep(1)  # wait one second
 
 
 # Read pin
