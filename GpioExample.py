@@ -90,10 +90,10 @@ pinNum = [pinTwo,pinFour,pinFive,pinSix]
 for i in pinNum:
     neo.pinMode(pinNum[i], neo.OUTPUT)
 while 1 :
-    for x in range(16):
+    for x in range(0, 15):
         num = [0,0,0,0]
         t = x
-        for y in range(4):
+        for y in range(0, 3):
             num[y] = t%2
             t = t/2
 
