@@ -10,7 +10,7 @@ neo = Gpio()  # create new Neo object
 
 pinNum = [24, 25, 26, 27]
 
-for i in range(0, 3):
+for i in pinNum:
     neo.pinMode(pinNum[i], neo.OUTPUT)
 
 pinTwo = 24  # pin to use
