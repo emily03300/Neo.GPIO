@@ -87,7 +87,7 @@ neo.pinMode(S3, neo.OUTPUT)  # Use innerbank pin 2 and set it as output either 0
 
 pinNum = [S0, S1, S2, S3]
 # Blink example
-for i in pinNum():
+for i in pinNum:
     neo.pinMode(pinNum[i], neo.OUTPUT)
 while 1 :
     for x in range(16):
