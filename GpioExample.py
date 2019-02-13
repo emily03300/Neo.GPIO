@@ -154,7 +154,7 @@ S3 = 28
 c0=(0,0,0,0)
 c1=[0,0,0,1]
 
-pinNum = [S0,S1,S2,S3]
+pinNum = [S0, S1, S2, S3]
 
 num = [0,0,0,0]
 
@@ -162,11 +162,11 @@ num = [0,0,0,0]
 for i in range(4):
     neo.pinMode(pinNum[i], neo.OUTPUT)
 
-neo.digitalWrite(pinNum[0], 1)
+neo.digitalRead(pinNum[0], 1)
 sleep(0.5)
-neo.digitalWrite(pinNum[1], 1)
+neo.digitalRead(pinNum[1], 1)
 sleep(0.5)
-neo.digitalWrite(pinNum[2], 1)
+neo.digitalRead(pinNum[2], 1)
 sleep(0.5)
-neo.digitalWrite(pinNum[3], 1)
+neo.digitalRead(pinNum[3], 1)
 sleep(0.5)
