@@ -55,8 +55,8 @@ while 1 :
 				num[y] = t%2
 				t = t/2
 
-			neo.digitalWrite(pinNum[0], num[0])
-			neo.digitalWrite(pinNum[1], num[1])
-			neo.digitalWrite(pinNum[2], num[2])
 			neo.digitalWrite(pinNum[3], num[3])
+			neo.digitalWrite(pinNum[2], num[2])
+			neo.digitalWrite(pinNum[1], num[1])
+			neo.digitalWrite(pinNum[0], num[0])
 			sleep(1)
