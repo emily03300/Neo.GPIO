@@ -45,18 +45,18 @@ neo = Gpio()
 pinNum = [24, 25, 26, 27]
 
 for i in pinNum:
-    neo.pinMode(pinNum[i])
+    neo.pinMode(pinNum[i], neo.OUTPUT)
 
 while 1 :
 	for x in range(16):
-    		num = [0,0,0,0]
-    		t = x
-    		for y in range(4):
-        		num[y] = t%2
-        		t = t/2
+			num = [0,0,0,0]
+			t = x
+			for y in range(4):
+				num[y] = t%2
+				t = t/2
 
-    		neo.digitalWrite(pinNum[24], num[24])
-    		neo.digitalWrite(pinNum[25], num[25])
-    		neo.digitalWrite(pinNum[26], num[26])
-    		neo.digitalWrite(pinNum[27], num[27])
-    		sleep(1)
+			neo.digitalWrite(pinNum[24], num[24])
+			neo.digitalWrite(pinNum[25], num[25])
+			neo.digitalWrite(pinNum[26], num[26])
+			neo.digitalWrite(pinNum[27], num[27])
+			sleep(1)
