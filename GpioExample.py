@@ -146,10 +146,10 @@ from time import sleep  # import sleep to wait for blinks
 
 neo =Gpio()
 
-S0 = 25 # pin to use
-S1 = 26
-S2 = 27
-S3 = 28
+S0 = 8 # pin to use
+S1 = 9
+S2 = 10
+S3 = 11
 
 c0=(0,0,0,0)
 c1=[0,0,0,1]
@@ -162,11 +162,11 @@ num = [0,0,0,0]
 for i in range(4):
     neo.pinMode(pinNum[i], neo.OUTPUT)
 
-neo.digitalRead(pinNum[0], 0)
+neo.digitalWrite(pinNum[0], 1)
 sleep(0.5)
-neo.digitalRead(pinNum[1], 1)
+neo.digitalWrite(pinNum[1], 1)
 sleep(0.5)
-neo.digitalRead(pinNum[2], 1)
+neo.digitalWrite(pinNum[2], 1)
 sleep(0.5)
-neo.digitalRead(pinNum[3], 1)
+neo.digitalWrite(pinNum[3], 1)
 sleep(0.5)
