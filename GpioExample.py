@@ -38,28 +38,68 @@
 # print ("Current pin(" + str(pinThree) + ") state is: " + str(neo.digitalRead(pinThree)))  # read current value of pinThree(To succesfully read a pin it must be either pulled to ground or 3.3v, a non connected wire will not work)
 
 
+#
+#
+# from neo import Gpio
+# from time import sleep
+#
+# neo = Gpio()
+#
+# pinNum = [24, 25, 26, 27]
+#
+# for i in pinNum:
+#     neo.pinMode(pinNum[i], neo.OUTPUT)
+#
+# while 1 :
+# 	for x in range(16):
+# 			num = [0,0,0,0]
+# 			t = x
+# 			for y in range(4):
+# 				num[y] = t%2
+# 				t = t/2
+#
+# 			neo.digitalWrite(pinNum[3], num[3])
+# 			neo.digitalWrite(pinNum[2], num[2])
+# 			neo.digitalWrite(pinNum[1], num[1])
+# 			neo.digitalWrite(pinNum[0], num[0])
+# 			sleep(1)
 
 
-from neo import Gpio
-from time import sleep
+# A easy Gpio library example for the Udoo Neo created by David Smerkous
+# The current things this library can do
 
-neo = Gpio()
+# digitalWriting/Reading - Soon to come PWM
 
-pinNum = [24, 25, 26, 27]
+from neo import Gpio  # import Gpio library
+from time import sleep  # import sleep to wait for blinks
 
+neo = Gpio()  # create new Neo object
+
+pinTwo = 0  # pin to use
+pinFour = 1
+pinFive = 2
+pinSix = 3
+
+
+
+neo.pinMode(pinTwo, neo.OUTPUT)  # Use innerbank pin 2 and set it as output either 0 (neo.INPUT) or 1 (neo.OUTPUT)
+neo.pinMode(pinFour, neo.OUTPUT)  # Use innerbank pin 2 and set it as output either 0 (neo.INPUT) or 1 (neo.OUTPUT)
+neo.pinMode(pinFive, neo.OUTPUT)  # Use innerbank pin 2 and set it as output either 0 (neo.INPUT) or 1 (neo.OUTPUT)
+neo.pinMode(pinSix, neo.OUTPUT)  # Use innerbank pin 2 and set it as output either 0 (neo.INPUT) or 1 (neo.OUTPUT)
+pinNum = [pinTwo,pinFour,pinFive,pinSix]
+# Blink example
 for i in pinNum:
     neo.pinMode(pinNum[i], neo.OUTPUT)
-
 while 1 :
-	for x in range(16):
-			num = [0,0,0,0]
-			t = x
-			for y in range(4):
-				num[y] = t%2
-				t = t/2
+    for x in range(16):
+        num = [0,0,0,0]
+        t = x
+        for y in range(4):
+            num[y] = t%2
+            t = t/2
 
-			neo.digitalWrite(pinNum[3], num[3])
-			neo.digitalWrite(pinNum[2], num[2])
-			neo.digitalWrite(pinNum[1], num[1])
-			neo.digitalWrite(pinNum[0], num[0])
-			sleep(1)
+        neo.digitalWrite(pinNum[pinSix], num[pinSix])
+        neo.digitalWrite(pinNum[pinFive], num[pinFive])
+        neo.digitalWrite(pinNum[pinFour], num[pinFour])
+        neo.digitalWrite(pinNum[pinTwo], num[pinTwo])
+        sleep(1)
