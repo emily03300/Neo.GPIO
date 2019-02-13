@@ -12,6 +12,7 @@ pinTwo = 8  # pin to use
 pinThree = 9
 pinFour = 10  # pin to use
 pinFive = 11
+pinSix = -5
 
 neo.pinMode(pinTwo, neo.OUTPUT)  # Use innerbank pin 2 and set it as output either 0 (neo.INPUT) or 1 (neo.OUTPUT)
 neo.pinMode(pinThree, neo.INPUT)  # Use pin three(innerbank) and read set state to read
