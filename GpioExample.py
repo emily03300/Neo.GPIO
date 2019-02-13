@@ -87,7 +87,7 @@ neo.pinMode(S3, neo.OUTPUT)  # Use innerbank pin 2 and set it as output either 0
 
 pinNum = [S0, S1, S2, S3]
 # Blink example
-for i in pinNum:
+for i in range(0, 4):
     neo.pinMode(pinNum[i], neo.OUTPUT)
 while 1 :
     for x in range(16):
@@ -97,7 +97,7 @@ while 1 :
         print(str(t))
         for y in range(4):
             num[y] = t%2
-            t = t/2
+            t = t//2
 
         neo.digitalWrite(pinNum[S3], num[S3])
         neo.digitalWrite(pinNum[S2], num[S2])
