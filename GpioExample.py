@@ -75,17 +75,17 @@ from time import sleep  # import sleep to wait for blinks
 
 neo = Gpio()  # create new Neo object
 
-pinTwo = 0  # pin to use
-pinFour = 1
-pinFive = 2
-pinSix = 3
+S0 = 24  # pin to use
+S1 = 25
+S2 = 26
+S3 = 27
 
-neo.pinMode(pinTwo, neo.OUTPUT)  # Use innerbank pin 2 and set it as output either 0 (neo.INPUT) or 1 (neo.OUTPUT)
-neo.pinMode(pinFour, neo.OUTPUT)  # Use innerbank pin 2 and set it as output either 0 (neo.INPUT) or 1 (neo.OUTPUT)
-neo.pinMode(pinFive, neo.OUTPUT)  # Use innerbank pin 2 and set it as output either 0 (neo.INPUT) or 1 (neo.OUTPUT)
-neo.pinMode(pinSix, neo.OUTPUT)  # Use innerbank pin 2 and set it as output either 0 (neo.INPUT) or 1 (neo.OUTPUT)
+neo.pinMode(S0, neo.OUTPUT)  # Use innerbank pin 2 and set it as output either 0 (neo.INPUT) or 1 (neo.OUTPUT)
+neo.pinMode(S1, neo.OUTPUT)  # Use innerbank pin 2 and set it as output either 0 (neo.INPUT) or 1 (neo.OUTPUT)
+neo.pinMode(S2, neo.OUTPUT)  # Use innerbank pin 2 and set it as output either 0 (neo.INPUT) or 1 (neo.OUTPUT)
+neo.pinMode(S3, neo.OUTPUT)  # Use innerbank pin 2 and set it as output either 0 (neo.INPUT) or 1 (neo.OUTPUT)
 
-pinNum = [pinTwo,pinFour,pinFive,pinSix]
+pinNum = [S0, S1, S2, S3]
 # Blink example
 for i in pinNum:
     neo.pinMode(pinNum[i], neo.OUTPUT)
@@ -93,12 +93,14 @@ while 1 :
     for x in range(0, 15):
         num = [0,0,0,0]
         t = x
+        print("x is" + str(x))
+        print(str(t))
         for y in range(0, 3):
             num[y] = t%2
             t = t/2
 
-        neo.digitalWrite(pinNum[pinSix], num[pinSix])
-        neo.digitalWrite(pinNum[pinFive], num[pinFive])
-        neo.digitalWrite(pinNum[pinFour], num[pinFour])
-        neo.digitalWrite(pinNum[pinTwo], num[pinTwo])
+        neo.digitalWrite(pinNum[S3], num[S3])
+        neo.digitalWrite(pinNum[S2], num[S2])
+        neo.digitalWrite(pinNum[S1], num[S1])
+        neo.digitalWrite(pinNum[S0], num[S0])
         sleep(1)
