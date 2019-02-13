@@ -45,7 +45,7 @@ neo = Gpio()
 pinNum = [24, 25, 26, 27]
 
 for i in pinNum:
-    neo.pinMode(pinNum[i], neo.OUTPUT)
+    neo.pinMode(pinNum[4], neo.OUTPUT)
 
 while 1 :
 	for x in range(16):
