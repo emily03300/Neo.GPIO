@@ -143,109 +143,156 @@
 # The current things this library can
 #
 
+#
+# from neo import Gpio  # import Gpio library
+# from time import sleep  # import sleep to wait for blinks
+#
+# neo =Gpio()
+#
+# S0 = 24 # pin to use
+# S1 = 25
+# S2 = 26
+# S3 = 27
+#
+# pinNum = [S0, S1, S2, S3]
+#
+# num = [0,0,0,0]
+#
+# # Blink example
+# for i in range(4):
+#     neo.pinMode(pinNum[i], neo.OUTPUT)
+#
+# neo.digitalWrite(pinNum[0], 0)
+# # sleep(0.5)
+# neo.digitalWrite(pinNum[1], 0)
+# # sleep(0.5)
+# neo.digitalWrite(pinNum[2], 0)
+# # sleep(0.5)
+# neo.digitalWrite(pinNum[3], 0)
+# # sleep(0.5)
+#
+# neo.digitalWrite(pinNum[0], 1)
+# neo.digitalWrite(pinNum[1], 0)
+# neo.digitalWrite(pinNum[2], 0)
+# neo.digitalWrite(pinNum[3], 0)
+#
+# neo.digitalWrite(pinNum[0], 0)
+# neo.digitalWrite(pinNum[1], 1)
+# neo.digitalWrite(pinNum[2], 0)
+# neo.digitalWrite(pinNum[3], 0)
+#
+# neo.digitalWrite(pinNum[0], 1)
+# neo.digitalWrite(pinNum[1], 1)
+# neo.digitalWrite(pinNum[2], 0)
+# neo.digitalWrite(pinNum[3], 0)
+#
+# neo.digitalWrite(pinNum[0], 0)
+# neo.digitalWrite(pinNum[1], 0)
+# neo.digitalWrite(pinNum[2], 1)
+# neo.digitalWrite(pinNum[3], 0)
+#
+# neo.digitalWrite(pinNum[0], 1)
+# neo.digitalWrite(pinNum[1], 0)
+# neo.digitalWrite(pinNum[2], 1)
+# neo.digitalWrite(pinNum[3], 0)
+#
+# neo.digitalWrite(pinNum[0], 0)
+# neo.digitalWrite(pinNum[1], 1)
+# neo.digitalWrite(pinNum[2], 1)
+# neo.digitalWrite(pinNum[3], 0)
+#
+# neo.digitalWrite(pinNum[0], 1)
+# neo.digitalWrite(pinNum[1], 1)
+# neo.digitalWrite(pinNum[2], 1)
+# neo.digitalWrite(pinNum[3], 0)
+#
+# neo.digitalWrite(pinNum[0], 0)
+# neo.digitalWrite(pinNum[1], 0)
+# neo.digitalWrite(pinNum[2], 0)
+# neo.digitalWrite(pinNum[3], 1)
+#
+# neo.digitalWrite(pinNum[0], 1)
+# neo.digitalWrite(pinNum[1], 0)
+# neo.digitalWrite(pinNum[2], 0)
+# neo.digitalWrite(pinNum[3], 1)
+#
+# neo.digitalWrite(pinNum[0], 0)
+# neo.digitalWrite(pinNum[1], 1)
+# neo.digitalWrite(pinNum[2], 0)
+# neo.digitalWrite(pinNum[3], 1)
+#
+# neo.digitalWrite(pinNum[0], 1)
+# neo.digitalWrite(pinNum[1], 1)
+# neo.digitalWrite(pinNum[2], 0)
+# neo.digitalWrite(pinNum[3], 1)
+#
+# neo.digitalWrite(pinNum[0], 0)
+# neo.digitalWrite(pinNum[1], 0)
+# neo.digitalWrite(pinNum[2], 1)
+# neo.digitalWrite(pinNum[3], 1)
+#
+# neo.digitalWrite(pinNum[0], 1)
+# neo.digitalWrite(pinNum[1], 0)
+# neo.digitalWrite(pinNum[2], 1)
+# neo.digitalWrite(pinNum[3], 1)
+#
+# neo.digitalWrite(pinNum[0], 0)
+# neo.digitalWrite(pinNum[1], 1)
+# neo.digitalWrite(pinNum[2], 1)
+# neo.digitalWrite(pinNum[3], 1)
+#
+# neo.digitalWrite(pinNum[0], 1)
+# neo.digitalWrite(pinNum[1], 1)
+# neo.digitalWrite(pinNum[2], 1)
+# neo.digitalWrite(pinNum[3], 1)
+#
+# raw = int(open("/sys/bus/iio/devices/iio:device0/in_voltage0_raw").read())
+# scale = float(open("/sys/bus/iio/devices/iio:device0/in_voltage_scale").read())
+# print(raw * scale)
 
-from neo import Gpio  # import Gpio library
-from time import sleep  # import sleep to wait for blinks
 
-neo =Gpio()
 
-S0 = 24 # pin to use
-S1 = 25
-S2 = 26
-S3 = 27
+import threading
+from neo import Gpio
 
-pinNum = [S0, S1, S2, S3]
+class BTMUXcontrol:
+    def __init__(self):
+        self.temp = 0
+        self.output_pins = [24, 25, 26, 27]
+        self.IOLock = threading.Lock()  # mutual lock for R/W control
+        self.gpio = Gpio()              # initialize GPIO controller
 
-num = [0,0,0,0]
+        # setup output pins
+        self.IOLock.acquire()
+        for pin in self.output_pins:
+            self.gpio.pinMode(pin, self.gpio.OUTPUT)
+            self.gpio.digitalWrite(pin, self.gpio.LOW)
+        self.IOLock.release()
 
-# Blink example
-for i in range(4):
-    neo.pinMode(pinNum[i], neo.OUTPUT)
+    def decToBin(self, n):
+        num = [0,0,0,0]
+        if n == 0:
+            return num
+        else:
+            for x in range(n):
+                t = x + 1
+                for y in range(4):
+                    num[y] = t%2
+                    t = t/2
+            return num
 
-neo.digitalWrite(pinNum[0], 0)
-# sleep(0.5)
-neo.digitalWrite(pinNum[1], 0)
-# sleep(0.5)
-neo.digitalWrite(pinNum[2], 0)
-# sleep(0.5)
-neo.digitalWrite(pinNum[3], 0)
-# sleep(0.5)
+    def mux_channel(self, channel):
+        bin_list = self.decToBin(channel) #binary list
+        self.IOLock.acquire()
+        for z in range(4):
+            self.gpio.digitalWrite(self.output_pins[z],bin_list[z])
+        self.IOLock.release()
+        #return True
 
-neo.digitalWrite(pinNum[0], 1)
-neo.digitalWrite(pinNum[1], 0)
-neo.digitalWrite(pinNum[2], 0)
-neo.digitalWrite(pinNum[3], 0)
-
-neo.digitalWrite(pinNum[0], 0)
-neo.digitalWrite(pinNum[1], 1)
-neo.digitalWrite(pinNum[2], 0)
-neo.digitalWrite(pinNum[3], 0)
-
-neo.digitalWrite(pinNum[0], 1)
-neo.digitalWrite(pinNum[1], 1)
-neo.digitalWrite(pinNum[2], 0)
-neo.digitalWrite(pinNum[3], 0)
-
-neo.digitalWrite(pinNum[0], 0)
-neo.digitalWrite(pinNum[1], 0)
-neo.digitalWrite(pinNum[2], 1)
-neo.digitalWrite(pinNum[3], 0)
-
-neo.digitalWrite(pinNum[0], 1)
-neo.digitalWrite(pinNum[1], 0)
-neo.digitalWrite(pinNum[2], 1)
-neo.digitalWrite(pinNum[3], 0)
-
-neo.digitalWrite(pinNum[0], 0)
-neo.digitalWrite(pinNum[1], 1)
-neo.digitalWrite(pinNum[2], 1)
-neo.digitalWrite(pinNum[3], 0)
-
-neo.digitalWrite(pinNum[0], 1)
-neo.digitalWrite(pinNum[1], 1)
-neo.digitalWrite(pinNum[2], 1)
-neo.digitalWrite(pinNum[3], 0)
-
-neo.digitalWrite(pinNum[0], 0)
-neo.digitalWrite(pinNum[1], 0)
-neo.digitalWrite(pinNum[2], 0)
-neo.digitalWrite(pinNum[3], 1)
-
-neo.digitalWrite(pinNum[0], 1)
-neo.digitalWrite(pinNum[1], 0)
-neo.digitalWrite(pinNum[2], 0)
-neo.digitalWrite(pinNum[3], 1)
-
-neo.digitalWrite(pinNum[0], 0)
-neo.digitalWrite(pinNum[1], 1)
-neo.digitalWrite(pinNum[2], 0)
-neo.digitalWrite(pinNum[3], 1)
-
-neo.digitalWrite(pinNum[0], 1)
-neo.digitalWrite(pinNum[1], 1)
-neo.digitalWrite(pinNum[2], 0)
-neo.digitalWrite(pinNum[3], 1)
-
-neo.digitalWrite(pinNum[0], 0)
-neo.digitalWrite(pinNum[1], 0)
-neo.digitalWrite(pinNum[2], 1)
-neo.digitalWrite(pinNum[3], 1)
-
-neo.digitalWrite(pinNum[0], 1)
-neo.digitalWrite(pinNum[1], 0)
-neo.digitalWrite(pinNum[2], 1)
-neo.digitalWrite(pinNum[3], 1)
-
-neo.digitalWrite(pinNum[0], 0)
-neo.digitalWrite(pinNum[1], 1)
-neo.digitalWrite(pinNum[2], 1)
-neo.digitalWrite(pinNum[3], 1)
-
-neo.digitalWrite(pinNum[0], 1)
-neo.digitalWrite(pinNum[1], 1)
-neo.digitalWrite(pinNum[2], 1)
-neo.digitalWrite(pinNum[3], 1)
-
-raw = int(open("/sys/bus/iio/devices/iio:device0/in_voltage0_raw").read())
-scale = float(open("/sys/bus/iio/devices/iio:device0/in_voltage_scale").read())
-print(raw * scale)
+    def read_ADC(self):
+        self.IOLock.acquire()
+        raw = int(open("/sys/bus/iio/devices/iio:device0/in_voltage0_raw").read())
+        scale = float(open("/sys/bus/iio/devices/iio:device0/in_voltage_scale").read())
+        vout = raw * scale
+        self.IOLock.release()
+        return vout
