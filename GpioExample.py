@@ -1,42 +1,42 @@
-# # # A easy Gpio library example for the Udoo Neo created by David Smerkous
-# # # The current things this library can do
-# #
-# # # digitalWriting/Reading - Soon to come PWM
-# #
-# # from neo import Gpio  # import Gpio library
-# # from time import sleep  # import sleep to wait for blinks
-# #
-# # neo = Gpio()  # create new Neo object
-# #
-# # pinTwo = 24  # pin to use
-# # pinThree = 25
-# # pinFour = 26  # pin to use
-# # pinFive = 27
-# # pinSix = 2
-# #
-# # neo.pinMode(pinTwo, neo.OUTPUT)  # Use innerbank pin 2 and set it as output either 0 (neo.INPUT) or 1 (neo.OUTPUT)
-# # neo.pinMode(pinThree, neo.OUTPUT)
-# # neo.pinMode(pinFour, neo.OUTPUT)
-# # neo.pinMode(pinFive, neo.OUTPUT)
-# # neo.pinMode(pinSix, neo.INPUT)  # Use pin three(innerbank) and read set state to read
+# # A easy Gpio library example for the Udoo Neo created by David Smerkous
+# # The current things this library can do
 #
-# # # Blink example
-# # for a in range(0, 5):  # Do for five times
-# #     neo.digitalWrite(pinThree, neo.HIGH)  # write high value to pin
-# #     sleep(1)  # wait one second
-# #     neo.digitalWrite(pinThree, neo.LOW)  # write low value to pin
-# #     sleep(1)  # wait one second
-# #     neo.digitalWrite(pinFive, neo.HIGH)  # write high value to pin
-# #     sleep(1)  # wait one second
-# #     neo.digitalWrite(pinFive, neo.LOW)  # write low value to pin
-# #     sleep(1)  # wait one second
+# # digitalWriting/Reading - Soon to come PWM
 #
+# from neo import Gpio  # import Gpio library
+# from time import sleep  # import sleep to wait for blinks
 #
+# neo = Gpio()  # create new Neo object
+#
+# pinTwo = 24  # pin to use
+# pinThree = 25
+# pinFour = 26  # pin to use
+# pinFive = 27
+# pinSix = 2
+#
+# neo.pinMode(pinTwo, neo.OUTPUT)  # Use innerbank pin 2 and set it as output either 0 (neo.INPUT) or 1 (neo.OUTPUT)
+# neo.pinMode(pinThree, neo.OUTPUT)
+# neo.pinMode(pinFour, neo.OUTPUT)
+# neo.pinMode(pinFive, neo.OUTPUT)
+# neo.pinMode(pinSix, neo.INPUT)  # Use pin three(innerbank) and read set state to read
+#
+# # Blink example
+# for a in range(0, 5):  # Do for five times
+#     neo.digitalWrite(pinThree, neo.HIGH)  # write high value to pin
+#     sleep(1)  # wait one second
+#     neo.digitalWrite(pinThree, neo.LOW)  # write low value to pin
+#     sleep(1)  # wait one second
+#     neo.digitalWrite(pinFive, neo.HIGH)  # write high value to pin
+#     sleep(1)  # wait one second
+#     neo.digitalWrite(pinFive, neo.LOW)  # write low value to pin
+#     sleep(1)  # wait one second
 #
 #
-# # Read pin
-# # print ("Current pin(" + str(pinThree) + ") state is: " + str(neo.digitalRead(pinThree)))  # read current value of pinThree(To succesfully read a pin it must be either pulled to ground or 3.3v, a non connected wire will not work)
 #
+#
+# Read pin
+# print ("Current pin(" + str(pinThree) + ") state is: " + str(neo.digitalRead(pinThree)))  # read current value of pinThree(To succesfully read a pin it must be either pulled to ground or 3.3v, a non connected wire will not work)
+
 #
 # #
 # #
@@ -114,10 +114,6 @@
 #
 # neo =Gpio()
 #
-# pinTwo = 2  # pin to use
-# pinFour = 3
-# pinFive = 4
-# pinSix = 25
 #
 # pinNum = [pinTwo, pinFour, pinFive, pinSix]
 #
@@ -146,7 +142,6 @@
 
 from neo import Gpio  # import Gpio library
 from time import sleep
-# import sleep to wait for blinks
 
 neo =Gpio()
 
@@ -163,90 +158,96 @@ num = [0,0,0,0]
 for i in range(4):
     neo.pinMode(pinNum[i], neo.OUTPUT)
 
-neo.digitalWrite(pinNum[0], 0)
+neo.digitalWrite(pinNum[0], 1)
 # sleep(0.5)
-neo.digitalWrite(pinNum[1], 0)
+neo.digitalWrite(pinNum[1], 1)
 # sleep(0.5)
-neo.digitalWrite(pinNum[2], 0)
+neo.digitalWrite(pinNum[2], 1)
 # sleep(0.5)
-neo.digitalWrite(pinNum[3], 0)
+neo.digitalWrite(pinNum[3], 1)
 # sleep(0.5)
 
-neo.digitalWrite(pinNum[0], 1)
-neo.digitalWrite(pinNum[1], 0)
-neo.digitalWrite(pinNum[2], 0)
-neo.digitalWrite(pinNum[3], 0)
+while True:
+    raw = int(open("/sys/bus/iio/devices/iio:device0/in_voltage0_raw").read())
+    scale = float(open("/sys/bus/iio/devices/iio:device0/in_voltage_scale").read())
+    v = raw * scale
+    t = (v - 500)/10 - 6
+    sleep(1)
+    print(t)
 
-neo.digitalWrite(pinNum[0], 0)
-neo.digitalWrite(pinNum[1], 1)
-neo.digitalWrite(pinNum[2], 0)
-neo.digitalWrite(pinNum[3], 0)
 
-neo.digitalWrite(pinNum[0], 1)
-neo.digitalWrite(pinNum[1], 1)
-neo.digitalWrite(pinNum[2], 0)
-neo.digitalWrite(pinNum[3], 0)
+# neo.digitalWrite(pinNum[0], 1)
+# neo.digitalWrite(pinNum[1], 0)
+# neo.digitalWrite(pinNum[2], 0)
+# neo.digitalWrite(pinNum[3], 0)
+#
+# neo.digitalWrite(pinNum[0], 0)
+# neo.digitalWrite(pinNum[1], 1)
+# neo.digitalWrite(pinNum[2], 0)
+# neo.digitalWrite(pinNum[3], 0)
+#
+# neo.digitalWrite(pinNum[0], 1)
+# neo.digitalWrite(pinNum[1], 1)
+# neo.digitalWrite(pinNum[2], 0)
+# neo.digitalWrite(pinNum[3], 0)
+#
+# neo.digitalWrite(pinNum[0], 0)
+# neo.digitalWrite(pinNum[1], 0)
+# neo.digitalWrite(pinNum[2], 1)
+# neo.digitalWrite(pinNum[3], 0)
+#
+# neo.digitalWrite(pinNum[0], 1)
+# neo.digitalWrite(pinNum[1], 0)
+# neo.digitalWrite(pinNum[2], 1)
+# neo.digitalWrite(pinNum[3], 0)
+#
+# neo.digitalWrite(pinNum[0], 0)
+# neo.digitalWrite(pinNum[1], 1)
+# neo.digitalWrite(pinNum[2], 1)
+# neo.digitalWrite(pinNum[3], 0)
+#
+# neo.digitalWrite(pinNum[0], 1)
+# neo.digitalWrite(pinNum[1], 1)
+# neo.digitalWrite(pinNum[2], 1)
+# neo.digitalWrite(pinNum[3], 0)
+#
+# neo.digitalWrite(pinNum[0], 0)
+# neo.digitalWrite(pinNum[1], 0)
+# neo.digitalWrite(pinNum[2], 0)
+# neo.digitalWrite(pinNum[3], 1)
+#
+# neo.digitalWrite(pinNum[0], 1)
+# neo.digitalWrite(pinNum[1], 0)
+# neo.digitalWrite(pinNum[2], 0)
+# neo.digitalWrite(pinNum[3], 1)
+#
+# neo.digitalWrite(pinNum[0], 0)
+# neo.digitalWrite(pinNum[1], 1)
+# neo.digitalWrite(pinNum[2], 0)
+# neo.digitalWrite(pinNum[3], 1)
+#
+# neo.digitalWrite(pinNum[0], 1)
+# neo.digitalWrite(pinNum[1], 1)
+# neo.digitalWrite(pinNum[2], 0)
+# neo.digitalWrite(pinNum[3], 1)
+#
+# neo.digitalWrite(pinNum[0], 0)
+# neo.digitalWrite(pinNum[1], 0)
+# neo.digitalWrite(pinNum[2], 1)
+# neo.digitalWrite(pinNum[3], 1)
+#
+# neo.digitalWrite(pinNum[0], 1)
+# neo.digitalWrite(pinNum[1], 0)
+# neo.digitalWrite(pinNum[2], 1)
+# neo.digitalWrite(pinNum[3], 1)
+#
+# neo.digitalWrite(pinNum[0], 0)
+# neo.digitalWrite(pinNum[1], 1)
+# neo.digitalWrite(pinNum[2], 1)
+# neo.digitalWrite(pinNum[3], 1)
+#
+# neo.digitalWrite(pinNum[0], 1)
+# neo.digitalWrite(pinNum[1], 1)
+# neo.digitalWrite(pinNum[2], 1)
+# neo.digitalWrite(pinNum[3], 1)
 
-neo.digitalWrite(pinNum[0], 0)
-neo.digitalWrite(pinNum[1], 0)
-neo.digitalWrite(pinNum[2], 1)
-neo.digitalWrite(pinNum[3], 0)
-
-neo.digitalWrite(pinNum[0], 1)
-neo.digitalWrite(pinNum[1], 0)
-neo.digitalWrite(pinNum[2], 1)
-neo.digitalWrite(pinNum[3], 0)
-
-neo.digitalWrite(pinNum[0], 0)
-neo.digitalWrite(pinNum[1], 1)
-neo.digitalWrite(pinNum[2], 1)
-neo.digitalWrite(pinNum[3], 0)
-
-neo.digitalWrite(pinNum[0], 1)
-neo.digitalWrite(pinNum[1], 1)
-neo.digitalWrite(pinNum[2], 1)
-neo.digitalWrite(pinNum[3], 0)
-
-neo.digitalWrite(pinNum[0], 0)
-neo.digitalWrite(pinNum[1], 0)
-neo.digitalWrite(pinNum[2], 0)
-neo.digitalWrite(pinNum[3], 1)
-
-neo.digitalWrite(pinNum[0], 1)
-neo.digitalWrite(pinNum[1], 0)
-neo.digitalWrite(pinNum[2], 0)
-neo.digitalWrite(pinNum[3], 1)
-
-neo.digitalWrite(pinNum[0], 0)
-neo.digitalWrite(pinNum[1], 1)
-neo.digitalWrite(pinNum[2], 0)
-neo.digitalWrite(pinNum[3], 1)
-
-neo.digitalWrite(pinNum[0], 1)
-neo.digitalWrite(pinNum[1], 1)
-neo.digitalWrite(pinNum[2], 0)
-neo.digitalWrite(pinNum[3], 1)
-
-neo.digitalWrite(pinNum[0], 0)
-neo.digitalWrite(pinNum[1], 0)
-neo.digitalWrite(pinNum[2], 1)
-neo.digitalWrite(pinNum[3], 1)
-
-neo.digitalWrite(pinNum[0], 1)
-neo.digitalWrite(pinNum[1], 0)
-neo.digitalWrite(pinNum[2], 1)
-neo.digitalWrite(pinNum[3], 1)
-
-neo.digitalWrite(pinNum[0], 0)
-neo.digitalWrite(pinNum[1], 1)
-neo.digitalWrite(pinNum[2], 1)
-neo.digitalWrite(pinNum[3], 1)
-
-neo.digitalWrite(pinNum[0], 1)
-neo.digitalWrite(pinNum[1], 1)
-neo.digitalWrite(pinNum[2], 1)
-neo.digitalWrite(pinNum[3], 1)
-
-raw = int(open("/sys/bus/iio/devices/iio:device0/in_voltage0_raw").read())
-scale = float(open("/sys/bus/iio/devices/iio:device0/in_voltage_scale").read())
-print(raw * scale)
