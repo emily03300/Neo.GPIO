@@ -156,7 +156,7 @@ S3 = 27
 
 pinNum = [S0, S1, S2, S3]
 
-# num = [0,0,0,0]
+num = [0,0,0,0]
 
 # Blink example
 for i in range(4):
