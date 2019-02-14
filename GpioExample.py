@@ -174,6 +174,7 @@ while True:
     t = (v - 500)/10 - 6
     sleep(1)
     print(t)
+    print(raw)
 
 
 # neo.digitalWrite(pinNum[0], 1)
