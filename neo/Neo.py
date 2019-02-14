@@ -81,7 +81,7 @@ class Gpio:
 			return False
 	'''
 
-    def digitalWrite(self, pin=24, value=0):
+    def digitalWrite(self, pin=2, value=0):
         try:
             gpio = self.gpios[int(pin)]
             if self.gpiodir[pin] != 1:
