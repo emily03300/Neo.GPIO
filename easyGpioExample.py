@@ -1,11 +1,8 @@
 from neo import easyGpio
 from time import sleep
 
-pin = easyGpio(24) # Pin 2 with LED
-pin = easyGpio(25)
-pin = easyGpio(26)
-pin = easyGpio(27)
-readpin = easyGpio(8) # Pin 3 with switch
+pin = easyGpio(2) # Pin 2 with LED
+readpin = easyGpio(3) # Pin 3 with switch
 
 pin.pinOUT() # Make pin output 
 readpin.pinIN() # Make pin in
