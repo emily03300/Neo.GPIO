@@ -145,7 +145,8 @@
 
 
 from neo import Gpio  # import Gpio library
-from time import sleep  # import sleep to wait for blinks
+from time import sleep
+# import sleep to wait for blinks
 
 neo =Gpio()
 
